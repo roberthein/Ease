@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="art/header.gif" width="890" alt="Observable"/>
+    <img src="Art/header.gif" width="890" alt="Ease"/>
 </p>
 
 **Ease** is a event driven animation system that combines the observer pattern with custom spring animations as observers.
