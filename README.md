@@ -1,10 +1,14 @@
+**Ease** is a event driven animation system that combines the observer pattern with custom spring animations as observers.
+
 <p align="center">
     <img src="Art/header.gif" width="890" alt="Ease"/>
 </p>
 
-**Ease** is a event driven animation system that combines the observer pattern with custom spring animations as observers.
+SceneKit [example](https://github.com/roberthein/Ease/tree/master/HeaderExample) 👆
 
 ![](Art/ease_touch.gif)![](Art/ease_scroll.gif)![](Art/ease_gyro.gif)
+
+UIGestureRecognizer - UIScrollView - Gyroscope [examples](https://github.com/roberthein/Ease/tree/master/Example) 👆
 
 ## Features
 
