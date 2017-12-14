@@ -6,6 +6,11 @@
 
 ![](Art/ease_touch.gif)![](Art/ease_scroll.gif)![](Art/ease_gyro.gif)
 
+## Features
+
+- [X] Swift 4
+- [X] supports iOS 9 and up
+- [X] supported value types are: CGFloat, CGPoint, CGSize, CGVector, Int, Float, Double, SCNVector3
 
 ## How
 
