@@ -1,6 +1,0 @@
-framework module Ease {
-  umbrella header "Ease-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		29B51CD587F215699981E2FB /* Pods_Ease_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D13E1FF66EF7F25CFB1E899F /* Pods_Ease_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
@@ -21,7 +20,6 @@
 
 /* Begin PBXFileReference section */
 		2A9BB028CCF0D467BBF43AA8 /* Ease.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Ease.podspec; path = ../Ease.podspec; sourceTree = "<group>"; };
-		3D67F8832D25B1E00496545E /* Pods-Ease_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ease_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ease_Tests/Pods-Ease_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* Ease_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ease_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -35,11 +33,6 @@
 		A981A27E1FE0789D00AA7AD0 /* ScrollingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingViewController.swift; sourceTree = "<group>"; };
 		A981A2801FE078BB00AA7AD0 /* GyroscopeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GyroscopeViewController.swift; sourceTree = "<group>"; };
 		A981A2831FE07B9500AA7AD0 /* Square.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
-		C6AF709454EE9B5869E0E318 /* Pods_Ease_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ease_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D13E1FF66EF7F25CFB1E899F /* Pods_Ease_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ease_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC5E5B78C7D392CAAAA839C2 /* Pods-Ease_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ease_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ease_Tests/Pods-Ease_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		DC819248A06AB773256D64E3 /* Pods-Ease_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ease_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ease_Example/Pods-Ease_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		FAE45A1C6D0DA94237DD4B7A /* Pods-Ease_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ease_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ease_Example/Pods-Ease_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,7 +40,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29B51CD587F215699981E2FB /* Pods_Ease_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,8 +50,6 @@
 			isa = PBXGroup;
 			children = (
 				607FACD21AFB9204008FA782 /* Example for Ease */,
-				F3096D3A9DCBAFC90027D633 /* Frameworks */,
-				D919D88641CCDB0043CDCDD4 /* Pods */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD11AFB9204008FA782 /* Products */,
 			);
@@ -125,26 +115,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		D919D88641CCDB0043CDCDD4 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				DC819248A06AB773256D64E3 /* Pods-Ease_Example.debug.xcconfig */,
-				FAE45A1C6D0DA94237DD4B7A /* Pods-Ease_Example.release.xcconfig */,
-				3D67F8832D25B1E00496545E /* Pods-Ease_Tests.debug.xcconfig */,
-				DC5E5B78C7D392CAAAA839C2 /* Pods-Ease_Tests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		F3096D3A9DCBAFC90027D633 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				D13E1FF66EF7F25CFB1E899F /* Pods_Ease_Example.framework */,
-				C6AF709454EE9B5869E0E318 /* Pods_Ease_Tests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -152,12 +122,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Ease_Example" */;
 			buildPhases = (
-				BD9CB3FA4628A325EC1253F8 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				610B61DDFC514580EB60F558 /* [CP] Embed Pods Frameworks */,
-				05498F2FF764954703A958DC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -214,60 +181,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		05498F2FF764954703A958DC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ease_Example/Pods-Ease_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		610B61DDFC514580EB60F558 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Ease_Example/Pods-Ease_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Ease/Ease.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Ease.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ease_Example/Pods-Ease_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BD9CB3FA4628A325EC1253F8 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Ease_Example-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		607FACCC1AFB9204008FA782 /* Sources */ = {
@@ -399,7 +312,6 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DC819248A06AB773256D64E3 /* Pods-Ease_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 29X3GG489T;
@@ -416,7 +328,6 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FAE45A1C6D0DA94237DD4B7A /* Pods-Ease_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 29X3GG489T;
