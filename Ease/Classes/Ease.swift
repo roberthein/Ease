@@ -1,6 +1,4 @@
 import Foundation
-import CoreGraphics
-import UIKit
 
 public final class Ease<T: Easeable> {
     
@@ -8,16 +6,48 @@ public final class Ease<T: Easeable> {
     
     private var observers: [Int: EaseObserver<T>] = [:]
     private var keys = (0...).makeIterator()
-    private let initialValue: T
-    public var minimumStep: CGFloat = 0.0001
+    
+    public var minimumStep: T.F
+    public let manualUpdate: Bool
+    
+    public var value: T {
+        didSet {
+            observers.forEach {
+                $0.value.setInitialValue(value)
+            }
+        }
+    }
+    
+    public var velocity: T = .zero {
+        didSet {
+            observers.forEach {
+                $0.value.setInitialVelocity(velocity)
+            }
+        }
+    }
+    
+    public var isPaused: Bool = true {
+        didSet {
+            guard isPaused != oldValue else {
+                return
+            }
+            
+            if !manualUpdate {
+                displayLink.isPaused = isPaused
+            }
+        }
+    }
     
     private var nextKey: Int {
-        guard let key = keys.next() else { fatalError("There will always be a next key.") }
+        guard let key = keys.next() else {
+            return 0
+        }
+        
         return key
     }
     
     private lazy var displayLink: CADisplayLink = {
-        let displayLink = CADisplayLink(target: self, selector: #selector(update(_:)))
+        let displayLink = CADisplayLink(target: self, selector: #selector(updateFromDisplayLink(_:)))
         displayLink.add(to: .current, forMode: .commonModes)
         displayLink.isPaused = true
         
@@ -26,19 +56,21 @@ public final class Ease<T: Easeable> {
     
     public var targetValue: T? = nil {
         didSet {
-            displayLink.isPaused = false
+            isPaused = false
         }
     }
     
-    public init(initialValue: T) {
-        self.initialValue = initialValue
+    public init(_ value: T, manualUpdate: Bool = false, minimumStep: T.F) {
+        self.value = value
+        self.minimumStep = minimumStep
+        self.manualUpdate = manualUpdate
     }
     
-    public func addSpring(tension: CGFloat, damping: CGFloat, mass: CGFloat, closure: @escaping Closure) -> EaseDisposable {
+    public func addSpring(tension: T.F, damping: T.F, mass: T.F, closure: @escaping Closure) -> EaseDisposable {
         let key = nextKey
         
-        observers[key] = EaseObserver(value: initialValue, tension: tension, damping: damping, mass: mass, closure: closure)
-        closure(initialValue)
+        observers[key] = EaseObserver(value: value, tension: tension, damping: damping, mass: mass, closure: closure)
+        closure(value)
         
         let disposable = EaseDisposable { [weak self] in
             self?.observers[key] = nil
@@ -51,36 +83,81 @@ public final class Ease<T: Easeable> {
         observers.removeAll()
     }
     
-    @objc func update(_ displayLink: CADisplayLink) {
-        guard let targetValue = targetValue else { return }
-        var isPaused = true
+    @objc func updateFromDisplayLink(_ displayLink: CADisplayLink) {
+        update(for: T.float(from: displayLink.duration))
+    }
+    
+    public func update(for frameDuration: T.F) {
+        guard let targetValue = targetValue, !isPaused else {
+            return
+        }
+        
+        var shouldPause = true
         
         observers.values.forEach {
             var observer = $0
-            interpolate(to: targetValue, with: &observer, duration: displayLink.duration)
+            interpolate(&observer, to: targetValue, duration: frameDuration)
             observer.closure(observer.value)
             
             if observer.value.distance(to: targetValue) > minimumStep {
-                isPaused = false
+                shouldPause = false
             }
         }
         
-        displayLink.isPaused = isPaused
+        isPaused = shouldPause
         
-        if displayLink.isPaused {
+        if isPaused {
             observers.values.forEach {
                 $0.closure(targetValue)
             }
         }
     }
     
-    private func interpolate(to targetValue: T, with observer: inout EaseObserver<T>, duration: TimeInterval) {
-        let displacement = observer.value - targetValue
-        let kx = displacement * observer.tension
-        let bv = observer.velocity * observer.damping
-        let acceleration = (kx + bv) / observer.mass
+    private func interpolate(_ observer: inout EaseObserver<T>, to targetValue: T, duration: T.F) {
+        let displacement = subtract(observer.value.values, targetValue.values)
+        let kx = multiply(displacement, observer.tension)
+        let bv = multiply(observer.velocity.values, observer.damping)
+        let acceleration = divide(sum(kx, bv), observer.mass)
         
-        observer.velocity -= acceleration * CGFloat(duration)
-        observer.value += observer.velocity * CGFloat(duration)
+        observer.velocity = T(with: subtract(observer.velocity.values, multiply(acceleration, duration)))
+        observer.value = T(with: sum(observer.value.values, multiply(observer.velocity.values, duration)))
+    }
+    
+    func subtract(_ lhs: [T.F], _ rhs: [T.F]) -> [T.F] {
+        return lhs.enumeratedMap {
+            $1 - rhs[$0]
+        }
+    }
+    
+    func sum(_ lhs: [T.F], _ rhs: [T.F]) -> [T.F] {
+        return lhs.enumeratedMap {
+            $1 + rhs[$0]
+        }
+    }
+    
+    func multiply(_ lhs: [T.F], _ rhs: T.F) -> [T.F] {
+        return lhs.map {
+            $0 * rhs
+        }
+    }
+    
+    func divide(_ lhs: [T.F], _ rhs: T.F) -> [T.F] {
+        return lhs.map {
+            $0 / rhs
+        }
+    }
+}
+
+fileprivate extension Array {
+    
+    func enumeratedMap<T>(_ transform: (Int, Element) -> T) -> [T] {
+        var result: [T] = []
+        result.reserveCapacity(count)
+        
+        for (index, element) in enumerated() {
+            result.append(transform(index, element))
+        }
+        
+        return result
     }
 }

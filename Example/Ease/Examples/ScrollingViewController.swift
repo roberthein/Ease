@@ -5,8 +5,8 @@ import Ease
 class ScrollingViewController: UIViewController, ExampleViewController {
     
     var disposal = EaseDisposal()
-    private lazy var ease = Ease(initialValue: view.center)
-    private lazy var circles = createCircles()
+    private lazy var ease: Ease<CGPoint> = Ease(view.center, minimumStep: 0.001)
+    private lazy var circles = createCircles(color: .tintColor3)
     
     private lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
@@ -27,7 +27,7 @@ class ScrollingViewController: UIViewController, ExampleViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .tintColor3
+        view.backgroundColor = .tintColor1
         
         view.addSubview(scrollView)
         NSLayoutConstraint.activate([

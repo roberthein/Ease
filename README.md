@@ -1,14 +1,21 @@
+<p align="center">
+    <img src="Art/header.png" width="890" alt="Ease"/>
+</p>
+
 **Ease** is a event driven animation system that combines the observer pattern with custom spring animations as observers.
 
 <p align="center">
-    <img src="Art/header.gif" width="890" alt="Ease"/>
+    <img src="Art/header.gif" width="500" alt="Ease"/>
+    <br>
+    SceneKit <a href="https://github.com/roberthein/Ease/tree/master/HeaderExample">Example</a>👆
 </p>
 
-SceneKit [example](https://github.com/roberthein/Ease/tree/master/HeaderExample) 👆
 
 ![](Art/ease_touch.gif)![](Art/ease_scroll.gif)![](Art/ease_gyro.gif)
 
-UIGestureRecognizer - UIScrollView - Gyroscope [examples](https://github.com/roberthein/Ease/tree/master/Example) 👆
+<p align="center">
+    UIGestureRecognizer, UIScrollView and Gyroscope based <a href="https://github.com/roberthein/Ease/tree/master/Example">Examples</a>👆
+</p>
 
 ## Features
 
@@ -21,7 +28,7 @@ UIGestureRecognizer - UIScrollView - Gyroscope [examples](https://github.com/rob
 Create your **Ease** object with an initial value
 
 ```swift
-var ease = Ease(initialValue: view.center)
+var ease: Ease<CGPoint> = Ease(view.center, minimumStep: 0.001)
 ```
 
 Add your custom spring-animation(s)

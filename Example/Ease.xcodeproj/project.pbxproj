@@ -19,7 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2A9BB028CCF0D467BBF43AA8 /* Ease.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Ease.podspec; path = ../Ease.podspec; sourceTree = "<group>"; };
+		2A9BB028CCF0D467BBF43AA8 /* Ease.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Ease.podspec; path = ../Ease.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		607FACD01AFB9204008FA782 /* Ease_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ease_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };

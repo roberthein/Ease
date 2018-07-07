@@ -3,18 +3,18 @@ import Ease
 import SceneKit
 
 protocol ExampleViewController {
-    func createCircles() -> [Circle]
+    func createCircles(color: UIColor) -> [Circle]
 }
 
 extension ExampleViewController where Self: UIViewController {
     
-    func createCircles() -> [Circle] {
+    func createCircles(color: UIColor) -> [Circle] {
         return [
-            Circle(color: .tintColor1, size: 125),
-            Circle(color: .tintColor1, size: 100),
-            Circle(color: .tintColor1, size: 75),
-            Circle(color: .tintColor1, size: 50),
-            Circle(color: .tintColor1, size: 25)
+            Circle(color: color, size: 125),
+            Circle(color: color, size: 100),
+            Circle(color: color, size: 75),
+            Circle(color: color, size: 50),
+            Circle(color: color, size: 25)
         ]
     }
 }

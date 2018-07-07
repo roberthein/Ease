@@ -6,8 +6,8 @@ import Ease
 class GyroscopeViewController: UIViewController, ExampleViewController {
     
     var disposal = EaseDisposal()
-    private lazy var ease = Ease(initialValue: CGVector.zero)
-    private lazy var circles = createCircles()
+    private lazy var ease: Ease<CGVector> = Ease(.zero, minimumStep: 0.001)
+    private lazy var circles = createCircles(color: .tintColor1)
     
     override func viewDidLoad() {
         super.viewDidLoad()

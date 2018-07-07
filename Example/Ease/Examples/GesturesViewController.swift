@@ -5,13 +5,13 @@ import Ease
 class GesturesViewController: UIViewController, ExampleViewController {
     
     var disposal = EaseDisposal()
-    private lazy var ease = Ease(initialValue: view.center)
-    private lazy var circles = createCircles()
+    private lazy var ease: Ease<CGPoint> = Ease(view.center, minimumStep: 0.001)
+    private lazy var circles = createCircles(color: .tintColor3)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .tintColor3
+        view.backgroundColor = .tintColor2
         
         for (i, circle) in circles.enumerated() {
             view.addSubview(circle)

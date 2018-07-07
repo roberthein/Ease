@@ -1,24 +1,36 @@
 import Foundation
 import UIKit
-import QuartzCore
 import SceneKit
-import SpriteKit
 import Ease
 
 final class GameViewController: UIViewController {
     
     private var initialLocation: CGPoint = .zero
     private var disposal = EaseDisposal()
-    private var ease = Ease(initialValue: CGPoint.zero)
+    private var ease: Ease<CGPoint> = Ease(.zero, minimumStep: 0.001)
+    
+    private lazy var cameraNode: SCNNode = {
+        let node = SCNNode()
+        node.camera = SCNCamera()
+        node.position = SCNVector3(x: 0, y: 0, z: 2)
+        
+        return node
+    }()
     
     private lazy var scene: SCNScene = {
-        guard let scene = SCNScene(named: "art.scnassets/EaseScene.scn") else { fatalError("Scene does not exist.") }
+        guard let scene = SCNScene(named: "art.scnassets/EaseScene.scn") else {
+            fatalError("Couldn't load scene.")
+        }
+        
         return scene
     }()
     
     private var scnView: SCNView {
-        guard let view = view as? SCNView else { fatalError("View is not a SCNView.") }
-        return view
+        guard let scnView = view as? SCNView else {
+            fatalError("View is not a SCNView.")
+        }
+        
+        return scnView
     }
     
     override func viewDidLoad() {
@@ -39,25 +51,31 @@ final class GameViewController: UIViewController {
                 }.add(to: &disposal)
         }
         
-        let cameraNode = SCNNode()
-        cameraNode.camera = SCNCamera()
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 2)
         scene.rootNode.addChildNode(cameraNode)
         
         scnView.scene = scene
-        scnView.backgroundColor = UIColor(red: 0/255, green: 255/255, blue: 218/255, alpha: 1)
+        scnView.backgroundColor = UIColor(red: 60/255, green: 10/255, blue: 240/255, alpha: 1)
         scnView.gestureRecognizers = [UIPanGestureRecognizer(target: self, action: #selector(pan(_:)))]
         scnView.antialiasingMode = .multisampling4X
     }
     
     @objc func pan(_ gestureRecognizer: UIPanGestureRecognizer) {
+        let location = gestureRecognizer.location(in: gestureRecognizer.view)
+        
         switch gestureRecognizer.state {
         case .possible, .began:
-            initialLocation = gestureRecognizer.location(in: view)
+            initialLocation = location
         case .changed:
-            ease.targetValue = gestureRecognizer.location(in: view) - initialLocation
+            var targetValue = gestureRecognizer.location(in: gestureRecognizer.view)
+            targetValue.x -= initialLocation.x
+            targetValue.y -= initialLocation.y
+            ease.targetValue = targetValue
         case .ended, .cancelled, .failed:
             ease.targetValue = .zero
         }
+    }
+    
+    override func prefersHomeIndicatorAutoHidden() -> Bool {
+        return true
     }
 }

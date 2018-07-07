@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name         = 'Ease'
-s.version      = '1.0.0'
+s.version      = '2.0.0'
 s.ios.deployment_target = '9.0'
 s.summary      = 'Animate everything with Ease'
 s.description  = <<-DESC

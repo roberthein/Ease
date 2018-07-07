@@ -6,11 +6,8 @@ class Circle: UIView {
     required init(color: UIColor, size: CGFloat) {
         super.init(frame: CGRect(origin: .zero, size: CGSize(width: size, height: size)))
         
-        backgroundColor = color.withAlphaComponent(0.2)
+        backgroundColor = color.withAlphaComponent(0.3)
         layer.cornerRadius = size / 2
-        layer.borderColor = color.cgColor
-        layer.borderWidth = 1 / UIScreen.main.scale
-        clipsToBounds = true
         isUserInteractionEnabled = false
     }
     
