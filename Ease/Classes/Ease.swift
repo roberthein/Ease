@@ -148,7 +148,7 @@ public final class Ease<T: Easeable> {
     }
 }
 
-fileprivate extension Array {
+private extension Array {
     
     func enumeratedMap<T>(_ transform: (Int, Element) -> T) -> [T] {
         var result: [T] = []
