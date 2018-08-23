@@ -99,7 +99,7 @@ public final class Ease<T: Easeable> {
             interpolate(&observer, to: targetValue, duration: frameDuration)
             observer.closure(observer.value)
             
-            if observer.value.distance(to: targetValue) > minimumStep {
+            if abs(observer.value.distance(to: targetValue)) > minimumStep {
                 shouldPause = false
             }
         }
