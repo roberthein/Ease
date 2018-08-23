@@ -48,7 +48,7 @@ public final class Ease<T: Easeable> {
     
     private lazy var displayLink: CADisplayLink = {
         let displayLink = CADisplayLink(target: self, selector: #selector(updateFromDisplayLink(_:)))
-        displayLink.add(to: .current, forMode: .commonModes)
+        displayLink.add(to: .current, forMode: RunLoop.Mode.common)
         displayLink.isPaused = true
         
         return displayLink
