@@ -15,12 +15,15 @@ extension SCNVector3: Easeable {
         self.init(values[0], values[1], values[2])
     }
     
-    public func distance(to target: SCNVector3) -> Float {
-        let distance = SCNVector3(x: target.x - x, y: target.y - y, z: target.z - z)
-        return abs((pow(distance.x, 2) + pow(distance.y, 2) + pow(distance.z, 2)).squareRoot())
-    }
-    
     public static func float(from timeInterval: TimeInterval) -> Float {
         return Float(timeInterval)
+    }
+    
+    public func rotation(for axis: SCNVector3) -> Float {
+        fatalError("\(#function) not implemented for SCNVector3.")
+    }
+    
+    public func position(for axis: SCNVector3) -> Float {
+        fatalError("\(#function) not implemented for SCNVector3.")
     }
 }

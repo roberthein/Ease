@@ -1,6 +1,6 @@
 import Foundation
 import CoreGraphics
-
+import SceneKit.SceneKitTypes
 
 extension CGFloat: Easeable {
     
@@ -18,12 +18,16 @@ extension CGFloat: Easeable {
         self.init(values[0])
     }
     
-    public func distance(to target: CGFloat) -> CGFloat {
-        return abs(self - target)
-    }
-    
     public static func float(from timeInterval: TimeInterval) -> CGFloat {
         return CGFloat(timeInterval)
+    }
+    
+    public func rotation(for axis: SCNVector3) -> Float {
+        return Float(self)
+    }
+    
+    public func position(for axis: SCNVector3) -> Float {
+        return Float(self)
     }
 }
 
@@ -39,13 +43,18 @@ extension CGPoint: Easeable {
         self.init(x: values[0], y: values[1])
     }
     
-    public func distance(to target: CGPoint) -> CGFloat {
-        let distance = CGPoint(x: target.x - x, y: target.y - y)
-        return abs((pow(distance.x, 2) + pow(distance.y, 2)).squareRoot())
-    }
-    
     public static func float(from timeInterval: TimeInterval) -> CGFloat {
         return CGFloat(timeInterval)
+    }
+    
+    public func rotation(for axis: SCNVector3) -> Float {
+        let value = (Float(x) * axis.x) + (Float(y) * axis.y)
+        return value
+    }
+    
+    public func position(for axis: SCNVector3) -> Float {
+        let value = (Float(x) * axis.x) + (Float(y) * axis.y)
+        return value
     }
 }
 
@@ -61,13 +70,18 @@ extension CGSize: Easeable {
         self.init(width: values[0], height: values[1])
     }
     
-    public func distance(to target: CGSize) -> CGFloat {
-        let distance = CGSize(width: target.width - width, height: target.height - height)
-        return abs((pow(distance.width, 2) + pow(distance.height, 2)).squareRoot())
-    }
-    
     public static func float(from timeInterval: TimeInterval) -> CGFloat {
         return CGFloat(timeInterval)
+    }
+    
+    public func rotation(for axis: SCNVector3) -> Float {
+        let value = (Float(width) * axis.x) + (Float(height) * axis.y)
+        return value
+    }
+    
+    public func position(for axis: SCNVector3) -> Float {
+        let value = (Float(width) * axis.x) + (Float(height) * axis.y)
+        return value
     }
 }
 
@@ -83,12 +97,17 @@ extension CGVector: Easeable {
         self.init(dx: values[0], dy: values[1])
     }
     
-    public func distance(to target: CGVector) -> CGFloat {
-        let distance = CGVector(dx: target.dx - dx, dy: target.dy - dy)
-        return abs((pow(distance.dx, 2) + pow(distance.dy, 2)).squareRoot())
-    }
-    
     public static func float(from timeInterval: TimeInterval) -> CGFloat {
         return CGFloat(timeInterval)
+    }
+    
+    public func rotation(for axis: SCNVector3) -> Float {
+        let value = (Float(dx) * axis.x) + (Float(dy) * axis.y)
+        return value
+    }
+    
+    public func position(for axis: SCNVector3) -> Float {
+        let value = (Float(dx) * axis.x) + (Float(dy) * axis.y)
+        return value
     }
 }

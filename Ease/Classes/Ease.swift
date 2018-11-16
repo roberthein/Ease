@@ -10,6 +10,18 @@ public final class Ease<T: Easeable> {
     public var minimumStep: T.F
     public let manualUpdate: Bool
     
+    public struct Spring {
+        let tension: T.F
+        let damping: T.F
+        let mass: T.F
+        
+        public init(tension: T.F, damping: T.F, mass: T.F) {
+            self.tension = tension
+            self.damping = damping
+            self.mass = mass
+        }
+    }
+    
     public var value: T {
         didSet {
             observers.forEach {
@@ -66,6 +78,10 @@ public final class Ease<T: Easeable> {
         self.manualUpdate = manualUpdate
     }
     
+    public func addSpring(_ spring: Spring, closure: @escaping Closure) -> EaseDisposable {
+        return addSpring(tension: spring.tension, damping: spring.damping, mass: spring.mass, closure: closure)
+    }
+    
     public func addSpring(tension: T.F, damping: T.F, mass: T.F, closure: @escaping Closure) -> EaseDisposable {
         let key = nextKey
         
@@ -99,7 +115,7 @@ public final class Ease<T: Easeable> {
             interpolate(&observer, to: targetValue, duration: frameDuration)
             observer.closure(observer.value)
             
-            if abs(observer.value.distance(to: targetValue)) > minimumStep {
+            if abs(observer.value.getDistance(to: targetValue)) > minimumStep {
                 shouldPause = false
             }
         }
@@ -148,7 +164,7 @@ public final class Ease<T: Easeable> {
     }
 }
 
-private extension Array {
+internal extension Array {
     
     func enumeratedMap<T>(_ transform: (Int, Element) -> T) -> [T] {
         var result: [T] = []

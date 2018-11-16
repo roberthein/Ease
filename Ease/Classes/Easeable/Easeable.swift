@@ -1,4 +1,5 @@
 import Foundation
+import SceneKit.SceneKitTypes
 
 public protocol Easeable {
     
@@ -10,7 +11,22 @@ public protocol Easeable {
     
     init(with values: [F])
     
-    func distance(to target: Self) -> F
-    
     static func float(from timeInterval: TimeInterval) -> F
+    
+    func rotation(for axis: SCNVector3) -> Float
+    
+    func position(for axis: SCNVector3) -> Float
+}
+
+internal extension Easeable {
+    
+    private func sq(_ value: F) -> F {
+        return value * value
+    }
+    
+    internal func getDistance(to target: Self) -> F {
+        return sqrt(values.enumeratedMap { i, value in
+            sq(value - target.values[i])
+            }.reduce(0, +))
+    }
 }
