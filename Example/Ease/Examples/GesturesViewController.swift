@@ -20,7 +20,7 @@ class GesturesViewController: UIViewController, ExampleViewController {
             let damping = 100 - (CGFloat(i) * 10)
             let mass = 8 - (CGFloat(i) * 0.5)
             
-            ease.addSpring(tension: tension, damping: damping, mass: mass) { position in
+            ease.addSpring(tension: tension, damping: damping, mass: mass) { position, _ in
                 circle.center = position
                 }.add(to: &disposal)
         }
@@ -36,6 +36,8 @@ class GesturesViewController: UIViewController, ExampleViewController {
             ease.targetValue = gestureRecognizer.location(in: view)
         case .ended, .cancelled, .failed:
             ease.targetValue = view.center
+        @unknown default:
+            fatalError()
         }
     }
 }

@@ -1,4 +1,5 @@
-use_frameworks!
+platform :ios, '12.1'
+swift_version = '5.0'
 
 target 'Ease_Example' do
   pod 'Ease', :path => '../'

@@ -2,10 +2,11 @@ import Foundation
 
 public final class EaseObserver<T: Easeable> {
     
-    typealias Closure = (T) -> Void
+    typealias Closure = (T, T?) -> Void
     
     var value: T
     var velocity: T = .zero
+    var previousVelocity: T = .zero
     
     let tension: T.F
     let damping: T.F

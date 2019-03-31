@@ -1,5 +1,0 @@
-use_frameworks!
-
-target 'Ease3DSceneKit' do
-  pod 'Ease', :path => '../'
-end

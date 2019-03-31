@@ -24,7 +24,7 @@ internal extension Easeable {
         return value * value
     }
     
-    internal func getDistance(to target: Self) -> F {
+    func getDistance(to target: Self) -> F {
         return sqrt(values.enumeratedMap { i, value in
             sq(value - target.values[i])
             }.reduce(0, +))

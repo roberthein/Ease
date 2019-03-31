@@ -2,26 +2,35 @@
     <img src="Art/header.png" width="890" alt="Ease"/>
 </p>
 
-**Ease** is a event driven animation system that combines the observer pattern with custom spring animations as observers.
-
-<p align="center">
-    <img src="Art/header.gif" width="500" alt="Ease"/>
-    <br>
-    SceneKit <a href="https://github.com/roberthein/Ease/tree/master/HeaderExample">Example</a>👆
-</p>
-
-
-![](Art/ease_touch.gif)![](Art/ease_scroll.gif)![](Art/ease_gyro.gif)
-
-<p align="center">
-    UIGestureRecognizer, UIScrollView and Gyroscope based <a href="https://github.com/roberthein/Ease/tree/master/Example">Examples</a>👆
-</p>
+**Ease** is an event driven animation system that combines the observer pattern with custom spring animations as observers. **It's magic.**
 
 ## Features
 
-- [X] Swift 4
-- [X] supports iOS 9 and up
-- [X] supported value types are: CGFloat, CGPoint, CGSize, CGVector, Int, Float, Double, SCNVector3
+- [X] Optimized for Swift 5
+- [X] Supports iOS 9 and up
+- [X] Animate any value type
+- [X] Add natural spring behaviour to any value change
+
+## Supported value types
+
+- CGFloat
+- CGPoint
+- CGSize
+- CGVector
+- Int
+- Float
+- Double
+- SCNVector3
+
+## Examples
+
+<p align="center">
+    <img src="Art/header.gif" width="890" alt="Ease"/>
+    <br>
+</p>
+
+- <a href="https://github.com/roberthein/Ease/tree/master/Example3D">SceneKit Example</a>👆
+- <a href="https://github.com/roberthein/Ease/tree/master/Example">UIKit Examples</a>
 
 ## How
 

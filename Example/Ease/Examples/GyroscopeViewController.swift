@@ -21,7 +21,7 @@ class GyroscopeViewController: UIViewController, ExampleViewController {
             let damping = 30 - CGFloat(i * 5)
             let mass = 10 - (CGFloat(i))
             
-            ease.addSpring(tension: tension, damping: damping, mass: mass) { [weak self] vector in
+            ease.addSpring(tension: tension, damping: damping, mass: mass) { [weak self] vector, _ in
                 guard let strongSelf = self else { return }
                 circle.center = CGPoint(x: strongSelf.view.center.x - vector.dx, y: strongSelf.view.center.y - vector.dy)
                 }.add(to: &disposal)

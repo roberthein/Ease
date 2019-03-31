@@ -2,13 +2,17 @@ import Foundation
 
 public final class Ease<T: Easeable> {
     
-    public typealias Closure = (T) -> Void
+    public typealias Closure = (T, T?) -> Void
     
-    private var observers: [Int: EaseObserver<T>] = [:]
+    private var observers: [Int: (EaseObserver<T>, DispatchQueue?)] = [:]
     private var keys = (0...).makeIterator()
     
     public var minimumStep: T.F
     public let manualUpdate: Bool
+    
+    fileprivate let lock: Lock = Mutex()
+    
+    public let projection: Projection<T>?
     
     public struct Spring {
         let tension: T.F
@@ -23,17 +27,32 @@ public final class Ease<T: Easeable> {
     }
     
     public var value: T {
+        get {
+            return _value
+        } set {
+            lock.lock(); defer { lock.unlock() }
+            _value = newValue
+        }
+    }
+    
+    fileprivate var _value: T {
         didSet {
-            observers.forEach {
-                $0.value.setInitialValue(value)
+            observers.values.forEach { observer, dispatchQueue in
+                if let dispatchQueue = dispatchQueue {
+                    dispatchQueue.async {
+                        observer.setInitialValue(self.value)
+                    }
+                } else {
+                    observer.setInitialValue(value)
+                }
             }
         }
     }
     
     public var velocity: T = .zero {
         didSet {
-            observers.forEach {
-                $0.value.setInitialVelocity(velocity)
+            observers.values.forEach { observer, dispatchQueue in
+                observer.setInitialVelocity(velocity)
             }
         }
     }
@@ -60,7 +79,7 @@ public final class Ease<T: Easeable> {
     
     private lazy var displayLink: CADisplayLink = {
         let displayLink = CADisplayLink(target: self, selector: #selector(updateFromDisplayLink(_:)))
-        displayLink.add(to: .current, forMode: RunLoop.Mode.common)
+        displayLink.add(to: .current, forMode: .common)
         displayLink.isPaused = true
         
         return displayLink
@@ -72,21 +91,31 @@ public final class Ease<T: Easeable> {
         }
     }
     
-    public init(_ value: T, manualUpdate: Bool = false, minimumStep: T.F) {
-        self.value = value
+    public var shouldNeverPause: Bool = false
+    
+    public init(_ value: T, manualUpdate: Bool = false, minimumStep: T.F, targets projectionTargets: [T]? = nil) {
+        self._value = value
         self.minimumStep = minimumStep
         self.manualUpdate = manualUpdate
+        
+        if let targets = projectionTargets {
+            projection = Projection(targets: targets)
+        } else {
+            projection = nil
+        }
     }
     
-    public func addSpring(_ spring: Spring, closure: @escaping Closure) -> EaseDisposable {
-        return addSpring(tension: spring.tension, damping: spring.damping, mass: spring.mass, closure: closure)
+    public func addSpring(_ spring: Spring, queue: DispatchQueue? = nil, closure: @escaping Closure) -> EaseDisposable {
+        return addSpring(tension: spring.tension, damping: spring.damping, mass: spring.mass, queue: queue, closure: closure)
     }
     
-    public func addSpring(tension: T.F, damping: T.F, mass: T.F, closure: @escaping Closure) -> EaseDisposable {
+    public func addSpring(tension: T.F, damping: T.F, mass: T.F, queue: DispatchQueue? = nil, closure: @escaping Closure) -> EaseDisposable {
+        lock.lock(); defer { lock.unlock() }
+        
         let key = nextKey
         
-        observers[key] = EaseObserver(value: value, tension: tension, damping: damping, mass: mass, closure: closure)
-        closure(value)
+        observers[key] = (EaseObserver(value: value, tension: tension, damping: damping, mass: mass, closure: closure), queue)
+        closure(value, nil)
         
         let disposable = EaseDisposable { [weak self] in
             self?.observers[key] = nil
@@ -110,21 +139,26 @@ public final class Ease<T: Easeable> {
         
         var shouldPause = true
         
-        observers.values.forEach {
-            var observer = $0
+        observers.values.forEach { _observer, dispatchQueue in
+            var observer = _observer
             interpolate(&observer, to: targetValue, duration: frameDuration)
-            observer.closure(observer.value)
+            observer.closure(observer.value, nil)
             
-            if abs(observer.value.getDistance(to: targetValue)) > minimumStep {
+            let velocityIsBigger = isBigger(observer.velocity.values, minimumStep)
+            let previousVelocityIsBigger = isBigger(observer.previousVelocity.values, minimumStep)
+            
+            if abs(observer.value.getDistance(to: targetValue)) > minimumStep || velocityIsBigger || previousVelocityIsBigger || shouldNeverPause {
                 shouldPause = false
+            } else {
+                // handle completion here
             }
         }
         
         isPaused = shouldPause
         
         if isPaused {
-            observers.values.forEach {
-                $0.closure(targetValue)
+            observers.values.forEach { observer, dispatchQueue in
+                observer.closure(targetValue, nil)
             }
         }
     }
@@ -135,8 +169,20 @@ public final class Ease<T: Easeable> {
         let bv = multiply(observer.velocity.values, observer.damping)
         let acceleration = divide(sum(kx, bv), observer.mass)
         
+        observer.previousVelocity = observer.velocity
         observer.velocity = T(with: subtract(observer.velocity.values, multiply(acceleration, duration)))
         observer.value = T(with: sum(observer.value.values, multiply(observer.velocity.values, duration)))
+    }
+    
+    func isBigger(_ lhs: [T.F], _ rhs: T.F) -> Bool {
+        
+        for value in lhs {
+            if abs(value) > rhs {
+                return true
+            }
+        }
+        
+        return false
     }
     
     func subtract(_ lhs: [T.F], _ rhs: [T.F]) -> [T.F] {

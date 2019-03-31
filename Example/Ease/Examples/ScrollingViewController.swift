@@ -45,7 +45,7 @@ class ScrollingViewController: UIViewController, ExampleViewController {
             let damping = 80 - (CGFloat(i) * 10)
             let mass = 8 - (CGFloat(i) * 0.5)
 
-            ease.addSpring(tension: tension, damping: damping, mass: mass) { [weak self] offset in
+            ease.addSpring(tension: tension, damping: damping, mass: mass) { [weak self] offset, _ in
                 guard let strongSelf = self else { return }
                 circle.center.x = strongSelf.view.bounds.width - ((strongSelf.view.bounds.width / 4) + (offset.x / 4))
                 circle.center.y = strongSelf.view.bounds.height - ((strongSelf.view.bounds.width / 4) + (offset.y / 4))
