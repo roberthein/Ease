@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
 s.name         = 'Ease'
-s.version      = '2.0.0'
+s.version      = '3.0.0'
 s.ios.deployment_target = '9.0'
-s.summary      = 'Animate everything with Ease'
+s.summary      = 'Its magic'
 s.description  = <<-DESC
-Ease is a event driven animation system.
+Ease is an event driven animation system that combines the observer pattern with custom spring animations as observers.
 DESC
 s.homepage           = 'https://github.com/roberthein/Ease'
 s.license            = { :type => 'MIT', :file => 'LICENSE' }
