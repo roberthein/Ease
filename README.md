@@ -9,9 +9,9 @@
 - [X] Animate any value type
 - [X] Set multiple animations for a single value
 - [X] Animation trajectories update when you update the `targetValue`
+- [X] Add natural spring behaviour to any value change
 - [X] Optimized for Swift 5
 - [X] Compatible with iOS 9 and up
-- [X] Adds natural spring behaviour to any value change
 
 ## Supported value types
 
