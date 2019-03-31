@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="Art/header.png" width="890" alt="Ease"/>
+    <img src="Art/header.gif" width="890" alt="Ease"/>
 </p>
 
 **Ease** is an event driven animation system that combines the observer pattern with custom spring animations as observers. **It's magic.**
@@ -23,12 +23,6 @@
 - SCNVector3
 
 ## Examples
-
-<p align="center">
-    <img src="Art/header.gif" width="890" alt="Ease"/>
-    <br>
-</p>
-
 - <a href="https://github.com/roberthein/Ease/tree/master/Example3D">SceneKit Example</a>👆
 - <a href="https://github.com/roberthein/Ease/tree/master/Example">UIKit Examples</a>
 
