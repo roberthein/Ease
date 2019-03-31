@@ -6,10 +6,12 @@
 
 ## Features
 
-- [X] Optimized for Swift 5
-- [X] Supports iOS 9 and up
 - [X] Animate any value type
-- [X] Add natural spring behaviour to any value change
+- [X] Set multiple animations for a single value
+- [X] Animation trajectories update when you update the `targetValue`
+- [X] Optimized for Swift 5
+- [X] Compatible with iOS 9 and up
+- [X] Adds natural spring behaviour to any value change
 
 ## Supported value types
 
@@ -21,6 +23,8 @@
 - Float
 - Double
 - SCNVector3
+
+Easily extendible with more (custom) types.
 
 ## Examples
 - <a href="https://github.com/roberthein/Ease/tree/master/Example3D">SceneKit Example</a>👆
