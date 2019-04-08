@@ -2,7 +2,8 @@ import Foundation
 
 public final class Ease<T: Easeable> {
     
-    public typealias Closure = (T, T?) -> Void
+    public typealias EaseClosure = (T, T?) -> Void
+    public typealias EaseCompletion = () -> Void
     
     private var observers: [Int: (EaseObserver<T>, DispatchQueue?)] = [:]
     private var keys = (0...).makeIterator()
@@ -37,13 +38,14 @@ public final class Ease<T: Easeable> {
     
     fileprivate var _value: T {
         didSet {
+            let newValue = _value
             observers.values.forEach { observer, dispatchQueue in
                 if let dispatchQueue = dispatchQueue {
                     dispatchQueue.async {
-                        observer.setInitialValue(self.value)
+                        observer.setInitialValue(newValue)
                     }
                 } else {
-                    observer.setInitialValue(value)
+                    observer.setInitialValue(newValue)
                 }
             }
         }
@@ -105,16 +107,16 @@ public final class Ease<T: Easeable> {
         }
     }
     
-    public func addSpring(_ spring: Spring, queue: DispatchQueue? = nil, closure: @escaping Closure) -> EaseDisposable {
-        return addSpring(tension: spring.tension, damping: spring.damping, mass: spring.mass, queue: queue, closure: closure)
+    public func addSpring(_ spring: Spring, queue: DispatchQueue? = nil, closure: @escaping EaseClosure, completion: EaseCompletion? = nil) -> EaseDisposable {
+        return addSpring(tension: spring.tension, damping: spring.damping, mass: spring.mass, queue: queue, closure: closure, completion: completion)
     }
     
-    public func addSpring(tension: T.F, damping: T.F, mass: T.F, queue: DispatchQueue? = nil, closure: @escaping Closure) -> EaseDisposable {
+    public func addSpring(tension: T.F, damping: T.F, mass: T.F, queue: DispatchQueue? = nil, closure: @escaping EaseClosure, completion: EaseCompletion? = nil) -> EaseDisposable {
         lock.lock(); defer { lock.unlock() }
         
         let key = nextKey
         
-        observers[key] = (EaseObserver(value: value, tension: tension, damping: damping, mass: mass, closure: closure), queue)
+        observers[key] = (EaseObserver(value: value, tension: tension, damping: damping, mass: mass, closure: closure, completion: completion), queue)
         closure(value, nil)
         
         let disposable = EaseDisposable { [weak self] in
@@ -150,7 +152,7 @@ public final class Ease<T: Easeable> {
             if abs(observer.value.getDistance(to: targetValue)) > minimumStep || velocityIsBigger || previousVelocityIsBigger || shouldNeverPause {
                 shouldPause = false
             } else {
-                // handle completion here
+                observer.completion?()
             }
         }
         

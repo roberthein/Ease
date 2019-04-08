@@ -2,7 +2,8 @@ import Foundation
 
 public final class EaseObserver<T: Easeable> {
     
-    typealias Closure = (T, T?) -> Void
+    public typealias EaseClosure = (T, T?) -> Void
+    public typealias EaseCompletion = () -> Void
     
     var value: T
     var velocity: T = .zero
@@ -11,14 +12,16 @@ public final class EaseObserver<T: Easeable> {
     let tension: T.F
     let damping: T.F
     let mass: T.F
-    let closure: Closure
+    let closure: EaseClosure
+    let completion: EaseCompletion?
     
-    init(value: T, tension: T.F, damping: T.F, mass: T.F, closure: @escaping Closure) {
+    required init(value: T, tension: T.F, damping: T.F, mass: T.F, closure: @escaping EaseClosure, completion: EaseCompletion?) {
         self.value = value
         self.tension = tension
         self.damping = damping
         self.mass = mass
         self.closure = closure
+        self.completion = completion
     }
     
     func setInitialValue(_ value: T) {
