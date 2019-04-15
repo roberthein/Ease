@@ -20,9 +20,9 @@ class GesturesViewController: UIViewController, ExampleViewController {
             let damping = 100 - (CGFloat(i) * 10)
             let mass = 8 - (CGFloat(i) * 0.5)
             
-            ease.addSpring(tension: tension, damping: damping, mass: mass) { position, _ in
+            ease.addSpring(tension: tension, damping: damping, mass: mass, closure: { position, _ in
                 circle.center = position
-                }.add(to: &disposal)
+            }).add(to: &disposal)
         }
         
         let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(pan(_:)))
