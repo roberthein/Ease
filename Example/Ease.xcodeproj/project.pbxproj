@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15039A1D2279604B0050B501 /* Ease.h in Headers */ = {isa = PBXBuildFile; fileRef = 15039A1B2279604B0050B501 /* Ease.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		15039A202279604B0050B501 /* Ease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15039A192279604B0050B501 /* Ease.framework */; };
+		15039A212279604B0050B501 /* Ease.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15039A192279604B0050B501 /* Ease.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		15039A332279608A0050B501 /* Easeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15039A282279608A0050B501 /* Easeable.swift */; };
+		15039A342279608A0050B501 /* SceneKit+Easeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15039A2A2279608A0050B501 /* SceneKit+Easeable.swift */; };
+		15039A352279608A0050B501 /* Foundation+Easeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15039A2B2279608A0050B501 /* Foundation+Easeable.swift */; };
+		15039A362279608A0050B501 /* CoreGraphics+Easeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15039A2C2279608A0050B501 /* CoreGraphics+Easeable.swift */; };
+		15039A372279608A0050B501 /* EaseObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15039A2D2279608A0050B501 /* EaseObserver.swift */; };
+		15039A382279608A0050B501 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 15039A2E2279608A0050B501 /* .gitkeep */; };
+		15039A392279608A0050B501 /* Lock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15039A2F2279608A0050B501 /* Lock.swift */; };
+		15039A3A2279608A0050B501 /* EaseDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15039A302279608A0050B501 /* EaseDisposable.swift */; };
+		15039A3B2279608A0050B501 /* Ease.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15039A312279608A0050B501 /* Ease.swift */; };
+		15039A3C2279608A0050B501 /* Projection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15039A322279608A0050B501 /* Projection.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
@@ -18,7 +31,44 @@
 		A981A2841FE07B9500AA7AD0 /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = A981A2831FE07B9500AA7AD0 /* Square.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		15039A1E2279604B0050B501 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15039A182279604B0050B501;
+			remoteInfo = Ease;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		15039A252279604B0050B501 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				15039A212279604B0050B501 /* Ease.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		15039A192279604B0050B501 /* Ease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Ease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		15039A1B2279604B0050B501 /* Ease.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ease.h; sourceTree = "<group>"; };
+		15039A1C2279604B0050B501 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15039A282279608A0050B501 /* Easeable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Easeable.swift; sourceTree = "<group>"; };
+		15039A2A2279608A0050B501 /* SceneKit+Easeable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SceneKit+Easeable.swift"; sourceTree = "<group>"; };
+		15039A2B2279608A0050B501 /* Foundation+Easeable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Foundation+Easeable.swift"; sourceTree = "<group>"; };
+		15039A2C2279608A0050B501 /* CoreGraphics+Easeable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreGraphics+Easeable.swift"; sourceTree = "<group>"; };
+		15039A2D2279608A0050B501 /* EaseObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EaseObserver.swift; sourceTree = "<group>"; };
+		15039A2E2279608A0050B501 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		15039A2F2279608A0050B501 /* Lock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lock.swift; sourceTree = "<group>"; };
+		15039A302279608A0050B501 /* EaseDisposable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EaseDisposable.swift; sourceTree = "<group>"; };
+		15039A312279608A0050B501 /* Ease.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ease.swift; sourceTree = "<group>"; };
+		15039A322279608A0050B501 /* Projection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Projection.swift; sourceTree = "<group>"; };
 		2A9BB028CCF0D467BBF43AA8 /* Ease.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Ease.podspec; path = ../Ease.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		607FACD01AFB9204008FA782 /* Ease_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ease_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -36,21 +86,74 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		607FACCD1AFB9204008FA782 /* Frameworks */ = {
+		15039A162279604B0050B501 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		607FACCD1AFB9204008FA782 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15039A202279604B0050B501 /* Ease.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15039A1A2279604B0050B501 /* Ease */ = {
+			isa = PBXGroup;
+			children = (
+				15039A262279608A0050B501 /* Classes */,
+				15039A1B2279604B0050B501 /* Ease.h */,
+				15039A1C2279604B0050B501 /* Info.plist */,
+			);
+			path = Ease;
+			sourceTree = "<group>";
+		};
+		15039A262279608A0050B501 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				15039A272279608A0050B501 /* Easeable */,
+				15039A2D2279608A0050B501 /* EaseObserver.swift */,
+				15039A2E2279608A0050B501 /* .gitkeep */,
+				15039A2F2279608A0050B501 /* Lock.swift */,
+				15039A302279608A0050B501 /* EaseDisposable.swift */,
+				15039A312279608A0050B501 /* Ease.swift */,
+				15039A322279608A0050B501 /* Projection.swift */,
+			);
+			name = Classes;
+			path = ../../Ease/Classes;
+			sourceTree = "<group>";
+		};
+		15039A272279608A0050B501 /* Easeable */ = {
+			isa = PBXGroup;
+			children = (
+				15039A282279608A0050B501 /* Easeable.swift */,
+				15039A292279608A0050B501 /* Extensions */,
+			);
+			path = Easeable;
+			sourceTree = "<group>";
+		};
+		15039A292279608A0050B501 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				15039A2A2279608A0050B501 /* SceneKit+Easeable.swift */,
+				15039A2B2279608A0050B501 /* Foundation+Easeable.swift */,
+				15039A2C2279608A0050B501 /* CoreGraphics+Easeable.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
 				607FACD21AFB9204008FA782 /* Example for Ease */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
+				15039A1A2279604B0050B501 /* Ease */,
 				607FACD11AFB9204008FA782 /* Products */,
 				69DFF2DDB118E233E99DD4AE /* Pods */,
 			);
@@ -60,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACD01AFB9204008FA782 /* Ease_Example.app */,
+				15039A192279604B0050B501 /* Ease.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -125,7 +229,36 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		15039A142279604B0050B501 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15039A1D2279604B0050B501 /* Ease.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		15039A182279604B0050B501 /* Ease */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15039A242279604B0050B501 /* Build configuration list for PBXNativeTarget "Ease" */;
+			buildPhases = (
+				15039A142279604B0050B501 /* Headers */,
+				15039A152279604B0050B501 /* Sources */,
+				15039A162279604B0050B501 /* Frameworks */,
+				15039A172279604B0050B501 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Ease;
+			productName = Ease;
+			productReference = 15039A192279604B0050B501 /* Ease.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		607FACCF1AFB9204008FA782 /* Ease_Example */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Ease_Example" */;
@@ -133,10 +266,12 @@
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
+				15039A252279604B0050B501 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				15039A1F2279604B0050B501 /* PBXTargetDependency */,
 			);
 			name = Ease_Example;
 			productName = Ease;
@@ -153,6 +288,11 @@
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
+					15039A182279604B0050B501 = {
+						CreatedOnToolsVersion = 10.1;
+						DevelopmentTeam = 3TAZ984YN3;
+						ProvisioningStyle = Automatic;
+					};
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = 3TAZ984YN3;
@@ -174,11 +314,20 @@
 			projectRoot = "";
 			targets = (
 				607FACCF1AFB9204008FA782 /* Ease_Example */,
+				15039A182279604B0050B501 /* Ease */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		15039A172279604B0050B501 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15039A382279608A0050B501 /* .gitkeep in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		607FACCE1AFB9204008FA782 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -191,6 +340,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		15039A152279604B0050B501 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15039A332279608A0050B501 /* Easeable.swift in Sources */,
+				15039A362279608A0050B501 /* CoreGraphics+Easeable.swift in Sources */,
+				15039A342279608A0050B501 /* SceneKit+Easeable.swift in Sources */,
+				15039A3B2279608A0050B501 /* Ease.swift in Sources */,
+				15039A352279608A0050B501 /* Foundation+Easeable.swift in Sources */,
+				15039A3C2279608A0050B501 /* Projection.swift in Sources */,
+				15039A392279608A0050B501 /* Lock.swift in Sources */,
+				15039A372279608A0050B501 /* EaseObserver.swift in Sources */,
+				15039A3A2279608A0050B501 /* EaseDisposable.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		607FACCC1AFB9204008FA782 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -207,6 +372,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		15039A1F2279604B0050B501 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 15039A182279604B0050B501 /* Ease */;
+			targetProxy = 15039A1E2279604B0050B501 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		607FACDE1AFB9204008FA782 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
@@ -219,6 +392,75 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		15039A222279604B0050B501 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 3TAZ984YN3;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Ease/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zaidpathan.Ease;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		15039A232279604B0050B501 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 3TAZ984YN3;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Ease/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zaidpathan.Ease;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		607FACED1AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -329,7 +571,9 @@
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3TAZ984YN3;
 				INFOPLIST_FILE = Ease/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -345,7 +589,9 @@
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3TAZ984YN3;
 				INFOPLIST_FILE = Ease/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -361,6 +607,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		15039A242279604B0050B501 /* Build configuration list for PBXNativeTarget "Ease" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15039A222279604B0050B501 /* Debug */,
+				15039A232279604B0050B501 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "Ease" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
