@@ -1,5 +1,10 @@
 import Foundation
 
+public extension Notification.Name {
+    static let easeStarted = Notification.Name("EaseStarted")
+    static let easeCompleted = Notification.Name("EaseCompleted")
+}
+
 public final class Ease<T: Easeable> {
     
     public typealias EaseClosure = (T, T?) -> Void
@@ -53,7 +58,7 @@ public final class Ease<T: Easeable> {
     
     public var velocity: T = .zero {
         didSet {
-            observers.values.forEach { observer, dispatchQueue in
+            observers.values.forEach { observer, _ in
                 observer.setInitialVelocity(velocity)
             }
         }
@@ -67,6 +72,12 @@ public final class Ease<T: Easeable> {
             
             if !manualUpdate {
                 displayLink.isPaused = isPaused
+            }
+            
+            if isPaused {
+                NotificationCenter.default.post(name: .easeCompleted, object: self)
+            } else {
+                NotificationCenter.default.post(name: .easeStarted, object: self)
             }
         }
     }
@@ -90,6 +101,10 @@ public final class Ease<T: Easeable> {
     public var targetValue: T? = nil {
         didSet {
             isPaused = false
+            
+            observers.values.forEach { _observer, _ in
+                _observer.isPaused = false
+            }
         }
     }
     
@@ -135,13 +150,15 @@ public final class Ease<T: Easeable> {
     }
     
     public func update(for frameDuration: T.F) {
-        guard let targetValue = targetValue, !isPaused else {
+        guard !isPaused, let targetValue = targetValue else {
             return
         }
         
         var shouldPause = true
         
-        observers.values.forEach { _observer, dispatchQueue in
+        observers.values.forEach { _observer, _ in
+            guard !_observer.isPaused else { return }
+            
             var observer = _observer
             interpolate(&observer, to: targetValue, duration: frameDuration)
             observer.closure(observer.value, nil)
@@ -152,6 +169,7 @@ public final class Ease<T: Easeable> {
             if abs(observer.value.getDistance(to: targetValue)) > minimumStep || velocityIsBigger || previousVelocityIsBigger || shouldNeverPause {
                 shouldPause = false
             } else {
+                observer.isPaused = true
                 observer.completion?()
             }
         }
@@ -159,7 +177,7 @@ public final class Ease<T: Easeable> {
         isPaused = shouldPause
         
         if isPaused {
-            observers.values.forEach { observer, dispatchQueue in
+            observers.values.forEach { observer, _ in
                 observer.closure(targetValue, nil)
             }
         }
@@ -177,7 +195,6 @@ public final class Ease<T: Easeable> {
     }
     
     func isBigger(_ lhs: [T.F], _ rhs: T.F) -> Bool {
-        
         for value in lhs {
             if abs(value) > rhs {
                 return true

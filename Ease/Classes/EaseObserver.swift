@@ -8,6 +8,7 @@ public final class EaseObserver<T: Easeable> {
     var value: T
     var velocity: T = .zero
     var previousVelocity: T = .zero
+    var isPaused: Bool = false
     
     let tension: T.F
     let damping: T.F
