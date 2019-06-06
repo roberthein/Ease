@@ -1,4 +1,4 @@
-import Foundation
+import UIKit
 
 public extension Notification.Name {
     static let easeStarted = Notification.Name("EaseStarted")
