@@ -74,11 +74,7 @@ public final class Ease<T: Easeable> {
                 displayLink.isPaused = isPaused
             }
             
-            if isPaused {
-                NotificationCenter.default.post(name: .easeCompleted, object: self)
-            } else {
-                NotificationCenter.default.post(name: .easeStarted, object: self)
-            }
+            NotificationCenter.default.post(name: isPaused ? .easeCompleted : .easeStarted, object: self)
         }
     }
     
@@ -107,8 +103,6 @@ public final class Ease<T: Easeable> {
             }
         }
     }
-    
-    public var shouldNeverPause: Bool = false
     
     public init(_ value: T, manualUpdate: Bool = false, minimumStep: T.F, targets projectionTargets: [T]? = nil) {
         self._value = value
@@ -163,10 +157,10 @@ public final class Ease<T: Easeable> {
             interpolate(&observer, to: targetValue, duration: frameDuration)
             observer.closure(observer.value, nil)
             
-            let velocityIsBigger = isBigger(observer.velocity.values, minimumStep)
-            let previousVelocityIsBigger = isBigger(observer.previousVelocity.values, minimumStep)
+            let velocityTooHigh = observer.velocity > minimumStep || observer.previousVelocity > minimumStep
+            let notCloseToTarget = abs(observer.value.getDistance(to: targetValue)) > minimumStep
             
-            if abs(observer.value.getDistance(to: targetValue)) > minimumStep || velocityIsBigger || previousVelocityIsBigger || shouldNeverPause {
+            if notCloseToTarget || velocityTooHigh {
                 shouldPause = false
             } else {
                 observer.isPaused = true
@@ -184,48 +178,14 @@ public final class Ease<T: Easeable> {
     }
     
     private func interpolate(_ observer: inout EaseObserver<T>, to targetValue: T, duration: T.F) {
-        let displacement = subtract(observer.value.values, targetValue.values)
-        let kx = multiply(displacement, observer.tension)
-        let bv = multiply(observer.velocity.values, observer.damping)
-        let acceleration = divide(sum(kx, bv), observer.mass)
+        let distance = observer.value - targetValue
+        let kx = distance * observer.tension
+        let bv = observer.velocity * observer.damping
+        let acceleration = (kx + bv) / observer.mass
         
         observer.previousVelocity = observer.velocity
-        observer.velocity = T(with: subtract(observer.velocity.values, multiply(acceleration, duration)))
-        observer.value = T(with: sum(observer.value.values, multiply(observer.velocity.values, duration)))
-    }
-    
-    func isBigger(_ lhs: [T.F], _ rhs: T.F) -> Bool {
-        for value in lhs {
-            if abs(value) > rhs {
-                return true
-            }
-        }
-        
-        return false
-    }
-    
-    func subtract(_ lhs: [T.F], _ rhs: [T.F]) -> [T.F] {
-        return lhs.enumeratedMap {
-            $1 - rhs[$0]
-        }
-    }
-    
-    func sum(_ lhs: [T.F], _ rhs: [T.F]) -> [T.F] {
-        return lhs.enumeratedMap {
-            $1 + rhs[$0]
-        }
-    }
-    
-    func multiply(_ lhs: [T.F], _ rhs: T.F) -> [T.F] {
-        return lhs.map {
-            $0 * rhs
-        }
-    }
-    
-    func divide(_ lhs: [T.F], _ rhs: T.F) -> [T.F] {
-        return lhs.map {
-            $0 / rhs
-        }
+        observer.velocity = observer.velocity - (acceleration * duration)
+        observer.value = observer.value + (observer.velocity * duration)
     }
 }
 
@@ -240,5 +200,65 @@ internal extension Array {
         }
         
         return result
+    }
+}
+
+extension Easeable {
+    
+    static func - (lhs: Self, rhs: Self) -> Self {
+        return Self(with: lhs.values - rhs.values)
+    }
+    
+    static func + (lhs: Self, rhs: Self) -> Self {
+        return Self(with: lhs.values + rhs.values)
+    }
+    
+    static func * (lhs: Self, rhs: Self.F) -> Self {
+        return Self(with: lhs.values * rhs)
+    }
+    
+    static func / (lhs: Self, rhs: Self.F) -> Self {
+        return Self(with: lhs.values / rhs)
+    }
+    
+    static func > (lhs: Self, rhs: Self.F) -> Bool {
+        return lhs.values > rhs
+    }
+}
+
+extension Array where Element: FloatingPoint {
+    
+    static func - (lhs: Self, rhs: Self) -> Self {
+        return lhs.enumeratedMap {
+            $1 - rhs[$0]
+        }
+    }
+    
+    static func + (lhs: Self, rhs: Self) -> Self {
+        return lhs.enumeratedMap {
+            $1 + rhs[$0]
+        }
+    }
+    
+    static func * (lhs: Self, rhs: Element) -> Self {
+        return lhs.map {
+            $0 * rhs
+        }
+    }
+    
+    static func / (lhs: Self, rhs: Element) -> Self {
+        return lhs.map {
+            $0 / rhs
+        }
+    }
+    
+    static func > (lhs: Self, rhs: Element) -> Bool {
+        for value in lhs {
+            if abs(value) > rhs {
+                return true
+            }
+        }
+        
+        return false
     }
 }

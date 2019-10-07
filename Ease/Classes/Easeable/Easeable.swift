@@ -12,10 +12,6 @@ public protocol Easeable {
     init(with values: [F])
     
     static func float(from timeInterval: TimeInterval) -> F
-    
-    func rotation(for axis: SCNVector3) -> Float
-    
-    func position(for axis: SCNVector3) -> Float
 }
 
 internal extension Easeable {

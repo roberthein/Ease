@@ -21,14 +21,6 @@ extension CGFloat: Easeable {
     public static func float(from timeInterval: TimeInterval) -> CGFloat {
         return CGFloat(timeInterval)
     }
-    
-    public func rotation(for axis: SCNVector3) -> Float {
-        return Float(self)
-    }
-    
-    public func position(for axis: SCNVector3) -> Float {
-        return Float(self)
-    }
 }
 
 extension CGPoint: Easeable {
@@ -45,16 +37,6 @@ extension CGPoint: Easeable {
     
     public static func float(from timeInterval: TimeInterval) -> CGFloat {
         return CGFloat(timeInterval)
-    }
-    
-    public func rotation(for axis: SCNVector3) -> Float {
-        let value = (Float(x) * axis.x) + (Float(y) * axis.y)
-        return value
-    }
-    
-    public func position(for axis: SCNVector3) -> Float {
-        let value = (Float(x) * axis.x) + (Float(y) * axis.y)
-        return value
     }
 }
 
@@ -73,16 +55,6 @@ extension CGSize: Easeable {
     public static func float(from timeInterval: TimeInterval) -> CGFloat {
         return CGFloat(timeInterval)
     }
-    
-    public func rotation(for axis: SCNVector3) -> Float {
-        let value = (Float(width) * axis.x) + (Float(height) * axis.y)
-        return value
-    }
-    
-    public func position(for axis: SCNVector3) -> Float {
-        let value = (Float(width) * axis.x) + (Float(height) * axis.y)
-        return value
-    }
 }
 
 extension CGVector: Easeable {
@@ -99,15 +71,5 @@ extension CGVector: Easeable {
     
     public static func float(from timeInterval: TimeInterval) -> CGFloat {
         return CGFloat(timeInterval)
-    }
-    
-    public func rotation(for axis: SCNVector3) -> Float {
-        let value = (Float(dx) * axis.x) + (Float(dy) * axis.y)
-        return value
-    }
-    
-    public func position(for axis: SCNVector3) -> Float {
-        let value = (Float(dx) * axis.x) + (Float(dy) * axis.y)
-        return value
     }
 }

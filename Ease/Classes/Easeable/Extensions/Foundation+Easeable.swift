@@ -18,14 +18,6 @@ extension Int: Easeable {
     public static func float(from timeInterval: TimeInterval) -> Float {
         return Float(timeInterval)
     }
-    
-    public func rotation(for axis: SCNVector3) -> Float {
-        return Float(self)
-    }
-    
-    public func position(for axis: SCNVector3) -> Float {
-        return Float(self)
-    }
 }
 
 extension Float: Easeable {
@@ -45,14 +37,6 @@ extension Float: Easeable {
     public static func float(from timeInterval: TimeInterval) -> Float {
         return Float(timeInterval)
     }
-    
-    public func rotation(for axis: SCNVector3) -> Float {
-        return Float(self)
-    }
-    
-    public func position(for axis: SCNVector3) -> Float {
-        return Float(self)
-    }
 }
 
 extension Double: Easeable {
@@ -71,13 +55,5 @@ extension Double: Easeable {
     
     public static func float(from timeInterval: TimeInterval) -> Double {
         return Double(timeInterval)
-    }
-    
-    public func rotation(for axis: SCNVector3) -> Float {
-        return Float(self)
-    }
-    
-    public func position(for axis: SCNVector3) -> Float {
-        return Float(self)
     }
 }

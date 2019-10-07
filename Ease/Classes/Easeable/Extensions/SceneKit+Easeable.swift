@@ -18,12 +18,4 @@ extension SCNVector3: Easeable {
     public static func float(from timeInterval: TimeInterval) -> Float {
         return Float(timeInterval)
     }
-    
-    public func rotation(for axis: SCNVector3) -> Float {
-        fatalError("\(#function) not implemented for SCNVector3.")
-    }
-    
-    public func position(for axis: SCNVector3) -> Float {
-        fatalError("\(#function) not implemented for SCNVector3.")
-    }
 }

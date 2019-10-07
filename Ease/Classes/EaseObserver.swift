@@ -1,6 +1,6 @@
 import Foundation
 
-public final class EaseObserver<T: Easeable> {
+internal final class EaseObserver<T: Easeable> {
     
     public typealias EaseClosure = (T, T?) -> Void
     public typealias EaseCompletion = () -> Void
