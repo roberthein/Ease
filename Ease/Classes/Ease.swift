@@ -239,9 +239,9 @@ internal extension Easeable {
     
     func clamp(_ range: ClosedRange<Self.F>) -> Self? {
         if values < range.lowerBound {
-            return Self(with: values.map { _ in range.lowerBound })
+            return set(range.lowerBound)
         } else if values > range.upperBound {
-            return Self(with: values.map { _ in range.upperBound })
+            return set(range.upperBound)
         }
         
         return nil
