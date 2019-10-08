@@ -1,4 +1,5 @@
-import UIKit
+import Foundation
+import QuartzCore
 
 public extension Notification.Name {
     static let easeStarted = Notification.Name("EaseStarted")
@@ -203,7 +204,7 @@ internal extension Array {
     }
 }
 
-extension Easeable {
+internal extension Easeable {
     
     static func - (lhs: Self, rhs: Self) -> Self {
         return Self(with: lhs.values - rhs.values)
@@ -226,7 +227,7 @@ extension Easeable {
     }
 }
 
-extension Array where Element: FloatingPoint {
+internal extension Array where Element: FloatingPoint {
     
     static func - (lhs: Self, rhs: Self) -> Self {
         return lhs.enumeratedMap {
