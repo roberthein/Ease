@@ -26,10 +26,10 @@ public final class Ease<T: Easeable> {
         let damping: T.F
         let mass: T.F
         
-        public init(tension: T.F, damping: T.F, mass: T.F) {
-            self.tension = tension
-            self.damping = damping
-            self.mass = mass
+        public init(t: T.F, d: T.F, m: T.F) {
+            tension = t
+            damping = d
+            mass = m
         }
     }
     
@@ -117,16 +117,16 @@ public final class Ease<T: Easeable> {
         }
     }
     
-    public func addSpring(_ spring: Spring, queue: DispatchQueue? = nil, closure: @escaping EaseClosure, completion: EaseCompletion? = nil) -> EaseDisposable {
-        return addSpring(tension: spring.tension, damping: spring.damping, mass: spring.mass, queue: queue, closure: closure, completion: completion)
+    public func addSpring(_ spring: Spring, clampRange: ClosedRange<T.F>? = nil, queue: DispatchQueue? = nil, closure: @escaping EaseClosure, completion: EaseCompletion? = nil) -> EaseDisposable {
+        return addSpring(tension: spring.tension, damping: spring.damping, mass: spring.mass, clampRange: clampRange, queue: queue, closure: closure, completion: completion)
     }
     
-    public func addSpring(tension: T.F, damping: T.F, mass: T.F, queue: DispatchQueue? = nil, closure: @escaping EaseClosure, completion: EaseCompletion? = nil) -> EaseDisposable {
+    public func addSpring(tension: T.F, damping: T.F, mass: T.F, clampRange: ClosedRange<T.F>? = nil, queue: DispatchQueue? = nil, closure: @escaping EaseClosure, completion: EaseCompletion? = nil) -> EaseDisposable {
         lock.lock(); defer { lock.unlock() }
         
         let key = nextKey
         
-        observers[key] = (EaseObserver(value: value, tension: tension, damping: damping, mass: mass, closure: closure, completion: completion), queue)
+        observers[key] = (EaseObserver(value: value, tension: tension, damping: damping, mass: mass, clampRange: clampRange, closure: closure, completion: completion), queue)
         closure(value, nil)
         
         let disposable = EaseDisposable { [weak self] in
@@ -156,9 +156,16 @@ public final class Ease<T: Easeable> {
             
             var observer = _observer
             interpolate(&observer, to: targetValue, duration: frameDuration)
+            
+            if let range = observer.clampRange, let clampedValue = observer.value.clamp(range) {
+                self.targetValue = clampedValue
+                observer.value = clampedValue
+                observer.velocity = .zero
+            }
+            
             observer.closure(observer.value, nil)
             
-            let velocityTooHigh = observer.velocity > minimumStep || observer.previousVelocity > minimumStep
+            let velocityTooHigh = (observer.velocity < -minimumStep || observer.velocity > minimumStep) || (observer.previousVelocity < -minimumStep || observer.previousVelocity > minimumStep)
             let notCloseToTarget = abs(observer.value.getDistance(to: targetValue)) > minimumStep
             
             if notCloseToTarget || velocityTooHigh {
@@ -222,8 +229,26 @@ internal extension Easeable {
         return Self(with: lhs.values / rhs)
     }
     
+    static func < (lhs: Self, rhs: Self.F) -> Bool {
+        return lhs.values < rhs
+    }
+    
     static func > (lhs: Self, rhs: Self.F) -> Bool {
         return lhs.values > rhs
+    }
+    
+    func clamp(_ range: ClosedRange<Self.F>) -> Self? {
+        if values < range.lowerBound {
+            return Self(with: values.map { _ in range.lowerBound })
+        } else if values > range.upperBound {
+            return Self(with: values.map { _ in range.upperBound })
+        }
+        
+        return nil
+    }
+    
+    func set(_ value: Self.F) -> Self {
+        return Self(with: values.map { _ in value })
     }
 }
 
@@ -253,9 +278,19 @@ internal extension Array where Element: FloatingPoint {
         }
     }
     
+    static func < (lhs: Self, rhs: Element) -> Bool {
+        for value in lhs {
+            if value < rhs {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
     static func > (lhs: Self, rhs: Element) -> Bool {
         for value in lhs {
-            if abs(value) > rhs {
+            if value > rhs {
                 return true
             }
         }

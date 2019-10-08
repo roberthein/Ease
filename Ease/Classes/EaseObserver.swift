@@ -16,11 +16,14 @@ internal final class EaseObserver<T: Easeable> {
     let closure: EaseClosure
     let completion: EaseCompletion?
     
-    required init(value: T, tension: T.F, damping: T.F, mass: T.F, closure: @escaping EaseClosure, completion: EaseCompletion?) {
+    let clampRange: ClosedRange<T.F>?
+    
+    required init(value: T, tension: T.F, damping: T.F, mass: T.F, clampRange: ClosedRange<T.F>? = nil, closure: @escaping EaseClosure, completion: EaseCompletion?) {
         self.value = value
         self.tension = tension
         self.damping = damping
         self.mass = mass
+        self.clampRange = clampRange
         self.closure = closure
         self.completion = completion
     }
