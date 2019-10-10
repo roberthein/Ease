@@ -8,7 +8,8 @@ extension SCNVector3: Easeable {
     public static var zero: SCNVector3 = SCNVector3Zero
     
     public var values: [Float] {
-        return [x, y, z]
+        get { return [x, y, z] }
+        set { self = SCNVector3(with: newValue) }
     }
     
     public init(with values: [Float]) {

@@ -33,6 +33,20 @@ public final class Ease<T: Easeable> {
         }
     }
     
+    public struct Range {
+        let min: T
+        let max: T
+        
+        var closedRanges: [ClosedRange<T.F>] {
+            return min.values.enumeratedMap { $1 ... max.values[$0] }
+        }
+        
+        public init(min: T, max: T) {
+            self.min = min
+            self.max = max
+        }
+    }
+    
     public var value: T {
         get {
             return _value
@@ -117,16 +131,16 @@ public final class Ease<T: Easeable> {
         }
     }
     
-    public func addSpring(_ spring: Spring, clampRange: ClosedRange<T.F>? = nil, queue: DispatchQueue? = nil, closure: @escaping EaseClosure, completion: EaseCompletion? = nil) -> EaseDisposable {
-        return addSpring(tension: spring.tension, damping: spring.damping, mass: spring.mass, clampRange: clampRange, queue: queue, closure: closure, completion: completion)
+    public func addSpring(_ spring: Spring, clampRange: Range? = nil, rubberBandingRange: Range? = nil, rubberBandingStiffness: T.F? = nil, queue: DispatchQueue? = nil, closure: @escaping EaseClosure, completion: EaseCompletion? = nil) -> EaseDisposable {
+        return addSpring(tension: spring.tension, damping: spring.damping, mass: spring.mass, clampRange: clampRange, rubberBandingRange: rubberBandingRange, rubberBandingStiffness: rubberBandingStiffness, queue: queue, closure: closure, completion: completion)
     }
     
-    public func addSpring(tension: T.F, damping: T.F, mass: T.F, clampRange: ClosedRange<T.F>? = nil, queue: DispatchQueue? = nil, closure: @escaping EaseClosure, completion: EaseCompletion? = nil) -> EaseDisposable {
+    public func addSpring(tension: T.F, damping: T.F, mass: T.F, clampRange: Range? = nil, rubberBandingRange: Range? = nil, rubberBandingStiffness: T.F? = nil, queue: DispatchQueue? = nil, closure: @escaping EaseClosure, completion: EaseCompletion? = nil) -> EaseDisposable {
         lock.lock(); defer { lock.unlock() }
         
         let key = nextKey
         
-        observers[key] = (EaseObserver(value: value, tension: tension, damping: damping, mass: mass, clampRange: clampRange, closure: closure, completion: completion), queue)
+        observers[key] = (EaseObserver(value: value, tension: tension, damping: damping, mass: mass, clampRange: clampRange, rubberBandingRange: rubberBandingRange, rubberBandingStiffness: rubberBandingStiffness, closure: closure, completion: completion), queue)
         closure(value, nil)
         
         let disposable = EaseDisposable { [weak self] in
@@ -151,18 +165,11 @@ public final class Ease<T: Easeable> {
         
         var shouldPause = true
         
-        observers.values.forEach { _observer, _ in
-            guard !_observer.isPaused else { return }
-            
-            var observer = _observer
-            interpolate(&observer, to: targetValue, duration: frameDuration)
-            
-            if let range = observer.clampRange, let clampedValue = observer.value.clamp(range) {
-                self.targetValue = clampedValue
-                observer.value = clampedValue
-                observer.velocity = .zero
-            }
-            
+        observers.values.forEach { observer, _ in
+            guard !observer.isPaused else { return }
+            observer.interpolate(to: targetValue, duration: frameDuration)
+            observer.rubberBand()
+            observer.clamp()
             observer.closure(observer.value, nil)
             
             let velocityTooHigh = (observer.velocity < -minimumStep || observer.velocity > minimumStep) || (observer.previousVelocity < -minimumStep || observer.previousVelocity > minimumStep)
@@ -184,17 +191,6 @@ public final class Ease<T: Easeable> {
             }
         }
     }
-    
-    private func interpolate(_ observer: inout EaseObserver<T>, to targetValue: T, duration: T.F) {
-        let distance = observer.value - targetValue
-        let kx = distance * observer.tension
-        let bv = observer.velocity * observer.damping
-        let acceleration = (kx + bv) / observer.mass
-        
-        observer.previousVelocity = observer.velocity
-        observer.velocity = observer.velocity - (acceleration * duration)
-        observer.value = observer.value + (observer.velocity * duration)
-    }
 }
 
 internal extension Array {
@@ -208,6 +204,54 @@ internal extension Array {
         }
         
         return result
+    }
+}
+
+internal extension EaseObserver {
+    
+    func interpolate(to targetValue: T, duration: T.F) {
+        let distance = value - targetValue
+        let kx = distance * tension
+        let bv = velocity * damping
+        let acceleration = (kx + bv) / mass
+        
+        previousVelocity = velocity
+        velocity = velocity - (acceleration * duration)
+        value = value + (velocity * duration)
+        
+        if value.values.count == 1 {
+            print("velocity:\(velocity), previousVelocity:\(previousVelocity), value:\(value), targetValue:\(targetValue)")
+        }
+        
+    }
+    
+    func rubberBand() {
+        if let range = rubberBandingRange, let stiffness = rubberBandingStiffness {
+            let rubberBandedValues: [T.F] = value.values.enumeratedMap {
+                if let rubberBandedValue = value.rubberBanding(value: $1, range: range.closedRanges[$0], stiffness: stiffness) {
+                    return rubberBandedValue
+                } else {
+                    return $1
+                }
+            }
+            
+            value.values = rubberBandedValues
+        }
+    }
+    
+    func clamp() {
+        if let range = clampRange {
+            let clampedValues: [T.F] = value.values.enumeratedMap {
+                if let clampedValue = value.clamp(value: $1, range: range.closedRanges[$0]) {
+                    self.velocity.values[$0] = self.velocity.values[$0] * -1
+                    return clampedValue
+                } else {
+                    return $1
+                }
+            }
+            
+            value.values = clampedValues
+        }
     }
 }
 
@@ -237,11 +281,25 @@ internal extension Easeable {
         return lhs.values > rhs
     }
     
-    func clamp(_ range: ClosedRange<Self.F>) -> Self? {
-        if values < range.lowerBound {
-            return set(range.lowerBound)
-        } else if values > range.upperBound {
-            return set(range.upperBound)
+    func clamp(value: Self.F, range: ClosedRange<Self.F>) -> Self.F? {
+        
+        if value < range.lowerBound {
+            return range.lowerBound
+        } else if value > range.upperBound {
+            return range.upperBound
+        }
+        
+        return nil
+    }
+    
+    func rubberBanding(value: Self.F, range: ClosedRange<Self.F>, stiffness: Self.F) -> Self.F? {
+        
+        if value > range.upperBound {
+            let offset = abs(range.upperBound - value) / stiffness
+            return range.upperBound + offset
+        } else if value < range.lowerBound {
+            let offset = abs(range.lowerBound - value) / stiffness
+            return range.lowerBound - offset
         }
         
         return nil

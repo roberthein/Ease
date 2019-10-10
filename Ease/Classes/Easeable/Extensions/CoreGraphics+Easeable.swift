@@ -11,7 +11,8 @@ extension CGFloat: Easeable {
     }
     
     public var values: [CGFloat] {
-        return [self]
+        get { return [self] }
+        set { self = CGFloat(with: newValue) }
     }
     
     public init(with values: [CGFloat]) {
@@ -28,7 +29,8 @@ extension CGPoint: Easeable {
     public typealias F = CGFloat
     
     public var values: [CGFloat] {
-        return [x, y]
+        get { return [x, y] }
+        set { self = CGPoint(with: newValue) }
     }
     
     public init(with values: [CGFloat]) {
@@ -45,7 +47,8 @@ extension CGSize: Easeable {
     public typealias F = CGFloat
     
     public var values: [CGFloat] {
-        return [width, height]
+        get { return [width, height] }
+        set { self = CGSize(with: newValue) }
     }
     
     public init(with values: [CGFloat]) {
@@ -62,7 +65,8 @@ extension CGVector: Easeable {
     public typealias F = CGFloat
     
     public var values: [CGFloat] {
-        return [dx, dy]
+        get { return [dx, dy] }
+        set { self = CGVector(with: newValue) }
     }
     
     public init(with values: [CGFloat]) {

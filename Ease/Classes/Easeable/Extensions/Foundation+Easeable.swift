@@ -8,7 +8,8 @@ extension Int: Easeable {
     public static var zero: Int = 0
     
     public var values: [Float] {
-        return [Float(self)]
+        get { return [Float(self)] }
+        set { self = Int(with: newValue) }
     }
     
     public init(with values: [Float]) {
@@ -27,7 +28,8 @@ extension Float: Easeable {
     public static var zero: Float = 0
     
     public var values: [Float] {
-        return [self]
+        get { return [self] }
+        set { self = Float(with: newValue) }
     }
     
     public init(with values: [Float]) {
@@ -46,7 +48,8 @@ extension Double: Easeable {
     public static var zero: Double = 0
     
     public var values: [Double] {
-        return [self]
+        get { return [self] }
+        set { self = Double(with: newValue) }
     }
     
     public init(with values: [Double]) {

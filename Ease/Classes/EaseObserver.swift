@@ -16,14 +16,18 @@ internal final class EaseObserver<T: Easeable> {
     let closure: EaseClosure
     let completion: EaseCompletion?
     
-    let clampRange: ClosedRange<T.F>?
+    let clampRange: Ease<T>.Range?
+    let rubberBandingRange: Ease<T>.Range?
+    let rubberBandingStiffness: T.F?
     
-    required init(value: T, tension: T.F, damping: T.F, mass: T.F, clampRange: ClosedRange<T.F>? = nil, closure: @escaping EaseClosure, completion: EaseCompletion?) {
+    required init(value: T, tension: T.F, damping: T.F, mass: T.F, clampRange: Ease<T>.Range? = nil, rubberBandingRange: Ease<T>.Range? = nil, rubberBandingStiffness: T.F? = nil, closure: @escaping EaseClosure, completion: EaseCompletion?) {
         self.value = value
         self.tension = tension
         self.damping = damping
         self.mass = mass
         self.clampRange = clampRange
+        self.rubberBandingRange = rubberBandingRange
+        self.rubberBandingStiffness = rubberBandingStiffness
         self.closure = closure
         self.completion = completion
     }

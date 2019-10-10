@@ -7,7 +7,7 @@ public protocol Easeable {
     
     static var zero: Self { get }
     
-    var values: [F] { get }
+    var values: [F] { get set }
     
     init(with values: [F])
     
