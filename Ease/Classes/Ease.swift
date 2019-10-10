@@ -218,11 +218,6 @@ internal extension EaseObserver {
         previousVelocity = velocity
         velocity = velocity - (acceleration * duration)
         value = value + (velocity * duration)
-        
-        if value.values.count == 1 {
-            print("velocity:\(velocity), previousVelocity:\(previousVelocity), value:\(value), targetValue:\(targetValue)")
-        }
-        
     }
     
     func rubberBand() {
