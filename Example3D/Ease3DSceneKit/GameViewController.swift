@@ -10,18 +10,21 @@ final class GameViewController: UIViewController {
     private var ease: Ease<CGPoint> = Ease(.zero, minimumStep: 0.001)
     
     private lazy var cameraNode: SCNNode = {
+        let camera = SCNCamera()
+        camera.usesOrthographicProjection = true
+        camera.wantsHDR = true
+        camera.wantsExposureAdaptation = false
+        camera.bloomIntensity = 10
+        camera.bloomBlurRadius = 60
+        camera.bloomThreshold = 1
+        if #available(iOS 13.0, *) {
+            camera.bloomIterationCount = 10
+            camera.bloomIterationSpread = 0.7
+        }
+        
         let node = SCNNode()
-        node.camera = SCNCamera()
-        node.camera?.usesOrthographicProjection = true
-        
-        node.camera?.bloomIntensity = 15
-        node.camera?.bloomBlurRadius = 4
-        node.camera?.bloomThreshold = 1.1
-        
-        node.camera?.wantsHDR = true
-        node.camera?.wantsExposureAdaptation = false
-        
-        node.position = SCNVector3(x: 0, y: 0, z: 1.7)
+        node.position = SCNVector3(x: 0, y: 0, z: 1.8)
+        node.camera = camera
         
         return node
     }()
@@ -42,25 +45,15 @@ final class GameViewController: UIViewController {
         return scnView
     }
     
-    override func viewDidLoad() {
+    override func viewDidLoad() {   
         super.viewDidLoad()
         
-        let materials = [
-            SCNMaterial.plastic(.easeYellow),
-            SCNMaterial.plastic(.easePurple),
-            SCNMaterial.metal(.white)
-        ]
-        
-        let pos = [
-            SCNVector3(x: -1.01844, y: -0.00032, z: 0),
-            SCNVector3(x: -0.291033, y: -0.038534, z: 0),
-            SCNVector3(x: 0.359619, y: -0.005253, z: 0),
-            SCNVector3(x: 0.971218, y: -0.00032, z: 0),
-        ]
-        
         for (i, childNode) in scene.rootNode.childNodes.enumerated() {
-            childNode.geometry?.materials = materials
-            childNode.position = pos[i]
+            childNode.geometry?.materials = [
+                .constant(.systemBlue),
+                .plastic(.systemBlue),
+                .constant(.white),
+            ]
             
             let tension = 1000 - (CGFloat(i) * 200)
             let damping = 75 + (CGFloat(i) * 25)
@@ -74,7 +67,7 @@ final class GameViewController: UIViewController {
         scene.rootNode.addChildNode(cameraNode)
         
         scnView.scene = scene
-        scnView.backgroundColor = .easeYellow
+        scnView.backgroundColor = .systemBlue
         scnView.gestureRecognizers = [UIPanGestureRecognizer(target: self, action: #selector(pan(_:)))]
         scnView.antialiasingMode = .multisampling4X
         scnView.isJitteringEnabled = true
@@ -98,7 +91,6 @@ final class GameViewController: UIViewController {
         }
     }
     
-    override var prefersHomeIndicatorAutoHidden: Bool {
-        return true
-    }
+    override var prefersHomeIndicatorAutoHidden: Bool { true }
+    override var prefersStatusBarHidden: Bool { true }
 }

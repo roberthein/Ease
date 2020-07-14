@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name = 'Ease'
-s.version = '3.1.1'
+s.version = '3.2.0'
 s.swift_version = '5.0'
 s.ios.deployment_target = '9.0'
 s.summary = 'Its magic'

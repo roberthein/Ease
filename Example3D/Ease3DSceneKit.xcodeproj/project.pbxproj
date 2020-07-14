@@ -8,24 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		A982D31E1FD9CBFD003E8390 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A982D31D1FD9CBFD003E8390 /* AppDelegate.swift */; };
-		A982D3201FD9CBFD003E8390 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = A982D31F1FD9CBFD003E8390 /* art.scnassets */; };
 		A982D3221FD9CBFD003E8390 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A982D3211FD9CBFD003E8390 /* GameViewController.swift */; };
 		A982D3251FD9CBFD003E8390 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A982D3231FD9CBFD003E8390 /* Main.storyboard */; };
-		A982D3271FD9CBFD003E8390 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A982D3261FD9CBFD003E8390 /* Assets.xcassets */; };
 		A982D32A1FD9CBFD003E8390 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A982D3281FD9CBFD003E8390 /* LaunchScreen.storyboard */; };
 		A9E57D022250C62D0067D149 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E57D012250C62D0067D149 /* Extensions.swift */; };
+		A9E85B39240BF2C6001202BC /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9E85B35240BF2C6001202BC /* Colors.xcassets */; };
+		A9E85B3A240BF2C6001202BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9E85B36240BF2C6001202BC /* Assets.xcassets */; };
+		A9E85B3B240BF2C6001202BC /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = A9E85B37240BF2C6001202BC /* art.scnassets */; };
+		A9E85B3C240BF2C6001202BC /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E85B38240BF2C6001202BC /* Colors.swift */; };
+		DD802F9B7DC5C9348C77859F /* libPods-Ease3DSceneKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79A6551A7AFE820AF7CA5EFB /* libPods-Ease3DSceneKit.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6325725C814B4195BC7A854E /* Pods-Ease3DSceneKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ease3DSceneKit.debug.xcconfig"; path = "Target Support Files/Pods-Ease3DSceneKit/Pods-Ease3DSceneKit.debug.xcconfig"; sourceTree = "<group>"; };
+		6E4145FD5448E0242336E5FD /* Pods-Ease3DSceneKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ease3DSceneKit.release.xcconfig"; path = "Target Support Files/Pods-Ease3DSceneKit/Pods-Ease3DSceneKit.release.xcconfig"; sourceTree = "<group>"; };
+		79A6551A7AFE820AF7CA5EFB /* libPods-Ease3DSceneKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Ease3DSceneKit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A982D31A1FD9CBFD003E8390 /* Ease3DSceneKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ease3DSceneKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A982D31D1FD9CBFD003E8390 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A982D31F1FD9CBFD003E8390 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		A982D3211FD9CBFD003E8390 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		A982D3241FD9CBFD003E8390 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A982D3261FD9CBFD003E8390 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A982D3291FD9CBFD003E8390 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A982D32B1FD9CBFD003E8390 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9E57D012250C62D0067D149 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		A9E85B35240BF2C6001202BC /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		A9E85B36240BF2C6001202BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A9E85B37240BF2C6001202BC /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
+		A9E85B38240BF2C6001202BC /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD802F9B7DC5C9348C77859F /* libPods-Ease3DSceneKit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,8 +51,18 @@
 		2A20033B2E78E3B8FAA0D7A7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				6325725C814B4195BC7A854E /* Pods-Ease3DSceneKit.debug.xcconfig */,
+				6E4145FD5448E0242336E5FD /* Pods-Ease3DSceneKit.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		73746A023ACDD3E6DEBA654C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				79A6551A7AFE820AF7CA5EFB /* libPods-Ease3DSceneKit.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		A982D3111FD9CBFD003E8390 = {
@@ -52,6 +71,7 @@
 				A982D31C1FD9CBFD003E8390 /* Ease3DSceneKit */,
 				A982D31B1FD9CBFD003E8390 /* Products */,
 				2A20033B2E78E3B8FAA0D7A7 /* Pods */,
+				73746A023ACDD3E6DEBA654C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,9 +86,8 @@
 		A982D31C1FD9CBFD003E8390 /* Ease3DSceneKit */ = {
 			isa = PBXGroup;
 			children = (
+				A9E85B34240BF2C6001202BC /* Resources */,
 				A982D31D1FD9CBFD003E8390 /* AppDelegate.swift */,
-				A982D31F1FD9CBFD003E8390 /* art.scnassets */,
-				A982D3261FD9CBFD003E8390 /* Assets.xcassets */,
 				A9E57D012250C62D0067D149 /* Extensions.swift */,
 				A982D3211FD9CBFD003E8390 /* GameViewController.swift */,
 				A982D32B1FD9CBFD003E8390 /* Info.plist */,
@@ -78,6 +97,17 @@
 			path = Ease3DSceneKit;
 			sourceTree = "<group>";
 		};
+		A9E85B34240BF2C6001202BC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A9E85B37240BF2C6001202BC /* art.scnassets */,
+				A9E85B36240BF2C6001202BC /* Assets.xcassets */,
+				A9E85B38240BF2C6001202BC /* Colors.swift */,
+				A9E85B35240BF2C6001202BC /* Colors.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -85,6 +115,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A982D32E1FD9CBFD003E8390 /* Build configuration list for PBXNativeTarget "Ease3DSceneKit" */;
 			buildPhases = (
+				6C2B9969F88CD840CBBC5CB5 /* [CP] Check Pods Manifest.lock */,
 				A982D3161FD9CBFD003E8390 /* Sources */,
 				A982D3171FD9CBFD003E8390 /* Frameworks */,
 				A982D3181FD9CBFD003E8390 /* Resources */,
@@ -137,14 +168,40 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A982D3201FD9CBFD003E8390 /* art.scnassets in Resources */,
+				A9E85B39240BF2C6001202BC /* Colors.xcassets in Resources */,
 				A982D32A1FD9CBFD003E8390 /* LaunchScreen.storyboard in Resources */,
-				A982D3271FD9CBFD003E8390 /* Assets.xcassets in Resources */,
+				A9E85B3B240BF2C6001202BC /* art.scnassets in Resources */,
+				A9E85B3A240BF2C6001202BC /* Assets.xcassets in Resources */,
 				A982D3251FD9CBFD003E8390 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6C2B9969F88CD840CBBC5CB5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Ease3DSceneKit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A982D3161FD9CBFD003E8390 /* Sources */ = {
@@ -152,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A982D3221FD9CBFD003E8390 /* GameViewController.swift in Sources */,
+				A9E85B3C240BF2C6001202BC /* Colors.swift in Sources */,
 				A9E57D022250C62D0067D149 /* Extensions.swift in Sources */,
 				A982D31E1FD9CBFD003E8390 /* AppDelegate.swift in Sources */,
 			);
@@ -229,7 +287,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -283,7 +341,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -294,10 +352,11 @@
 		};
 		A982D32F1FD9CBFD003E8390 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6325725C814B4195BC7A854E /* Pods-Ease3DSceneKit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3TAZ984YN3;
+				DEVELOPMENT_TEAM = AP62F24ZLQ;
 				INFOPLIST_FILE = Ease3DSceneKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -310,10 +369,11 @@
 		};
 		A982D3301FD9CBFD003E8390 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E4145FD5448E0242336E5FD /* Pods-Ease3DSceneKit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3TAZ984YN3;
+				DEVELOPMENT_TEAM = AP62F24ZLQ;
 				INFOPLIST_FILE = Ease3DSceneKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

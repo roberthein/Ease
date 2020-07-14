@@ -1,0 +1,16 @@
+PODS:
+  - Ease (3.1.1)
+
+DEPENDENCIES:
+  - Ease (from `../`)
+
+EXTERNAL SOURCES:
+  Ease:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Ease: f3cdad5c3b6274bbb1f499058678a56180d43793
+
+PODFILE CHECKSUM: 04f0b60644a9dba72d18c4826ac2787e05c265ae
+
+COCOAPODS: 1.8.4

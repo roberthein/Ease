@@ -1,0 +1,6 @@
+module Pods_Ease3DSceneKit {
+  umbrella header "Pods-Ease3DSceneKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
